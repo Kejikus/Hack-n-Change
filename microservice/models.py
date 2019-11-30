@@ -3,16 +3,10 @@ from enum import Enum
 from django.contrib.auth.models import User
 from django.db import models
 
+from microservice.utils import Status
+
 
 class Microservice(models.Model):
-
-    class Status(Enum):
-        Idea = 'IDEA'
-        InDev = 'INDEV'
-        Testing = 'TEST'
-        Deployed = 'DEPLOYED'
-        Deprecated = 'DEPRECATED'
-        Removed = 'ENDLIFE'
 
     dev_statues = (
         (Status.Idea, 'Прототип'),
@@ -49,7 +43,7 @@ class Department(models.Model):
 
 class Employee(models.Model):
 
-    user = models.ForeignKey(User, on_delete=models.CASCADE)
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
     department = models.ForeignKey("Department", on_delete=models.CASCADE)
     phone = models.CharField(max_length=15)
 

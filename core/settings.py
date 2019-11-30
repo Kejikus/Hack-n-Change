@@ -27,6 +27,12 @@ DEBUG = True
 
 ALLOWED_HOSTS = []
 
+ELASTICSEARCH_DSL={
+    'default': {
+        'hosts': 'localhost:9200'
+    },
+}
+
 
 # Application definition
 
@@ -40,6 +46,7 @@ INSTALLED_APPS = [
     'rest_framework',
     'core',
     'microservice',
+    'django_elasticsearch_dsl',
 ]
 
 MIDDLEWARE = [
