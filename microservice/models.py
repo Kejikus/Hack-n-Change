@@ -36,8 +36,8 @@ class Microservice(models.Model):
 
 class MicroserviceBind(models.Model):
 
-    dependant = models.ForeignKey("Microservice", on_delete=models.CASCADE)
-    depends_on = models.ForeignKey("Microservice", on_delete=models.CASCADE)
+    dependant = models.ForeignKey("Microservice", on_delete=models.CASCADE, related_name='depends_on_binds')
+    depends_on = models.ForeignKey("Microservice", on_delete=models.CASCADE, related_name='dependants_binds')
     description = models.CharField(max_length=20, blank=True, default="")
 
 
