@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'rest_framework',
     'core',
     'microservice',
 ]
@@ -56,7 +57,10 @@ ROOT_URLCONF = 'core.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.jinja2.Jinja2',
-        'DIRS': [os.path.join(BASE_DIR, 'microservice/templates')]
+        'DIRS': [
+            os.path.join(BASE_DIR, 'microservice/templates'),
+            os.path.join(BASE_DIR, 'graph/templates')
+        ]
         ,
         'APP_DIRS': True,
         'OPTIONS': {
