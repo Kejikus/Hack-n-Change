@@ -96,4 +96,5 @@ class Update(models.Model):
 
     description = models.TextField()
     microservice = models.ForeignKey("Microservice", on_delete=models.CASCADE)
+    date = models.DateTimeField(auto_now_add=True)
 
