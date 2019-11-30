@@ -1,6 +1,7 @@
 from enum import Enum
 
 from django.contrib.auth.models import User
+from django.core.exceptions import ValidationError
 from django.db import models
 
 from microservice.utils import Status
@@ -69,21 +70,29 @@ class Employee(models.Model):
 
 
 class Technology(models.Model):
+    """ Справочник используемых технологий """
 
     name = models.CharField(max_length=20)
 
 
 class MicroserviceTechnology(models.Model):
+    """ Привязка технологии к микросервису """
 
     microservice = models.ForeignKey("Microservice", on_delete=models.CASCADE)
     technology = models.ForeignKey("Technology", on_delete=models.CASCADE)
 
 
 class Issue(models.Model):
+    """ Проблема с микросервисом """
 
     header = models.CharField(max_length=100)
     description = models.TextField()
     microservice = models.ForeignKey("Microservice", on_delete=models.CASCADE)
+
+    def save(self, *args, **kwargs):
+        if self.description in (None, ""):
+            raise ValidationError("Issue description can't be empty.")
+        super(Issue, self).save(*args, **kwargs)
 
 
 class Update(models.Model):
@@ -92,3 +101,7 @@ class Update(models.Model):
     microservice = models.ForeignKey("Microservice", on_delete=models.CASCADE)
     date = models.DateTimeField(auto_now_add=True)
 
+    def save(self, *args, **kwargs):
+        if self.description in (None, ""):
+            raise ValidationError("Update description can't be empty.")
+        super(Update, self).save(*args, **kwargs)

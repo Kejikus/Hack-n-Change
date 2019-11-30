@@ -1,0 +1,26 @@
+body {
+    padding-top: 2rem;
+}
+
+body > header {
+    background-color: #3E938A;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.logo {
+    width: 100px;
+}
+
+.left-column {
+    background-color: #71B6AE;
+}
+
+.left-column header {
+    font-weight: bold;
+    padding-bottom: 1rem;
+}
+
+.left-column li {
+    list-style-type: none;
+}
