@@ -16,4 +16,22 @@ body > header {
 .search {
     display: flex;
     align-items: center;
+    justify-content: space-between;
+}
+
+.search input[type=submit] {
+    flex-grow: 1;
+    margin-left: 1rem;
+}
+
+.search input[type=text] {
+    border-color: transparent;
+    border-radius: 3px;
+    line-height: 1.8rem;
+}
+
+.account button {
+    width: 100%;
+    font-size: 2rem;
+    line-height: 2rem;
 }

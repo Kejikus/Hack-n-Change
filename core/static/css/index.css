@@ -14,8 +14,22 @@
     list-style-type: none;
 }
 
-.main-column header {
+.main-column > header {
     font-weight: bold;
     text-align: center;
     font-size: 1.5rem;
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.news-card {
+    background-color: #71B6AE;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+.news-card > header {
+    font-weight: bold;
+    font-size: 1.1rem;
+    text-align: center;
 }

@@ -19,7 +19,7 @@ class Microservice(models.Model):
     )
 
     name = models.CharField(max_length=50)
-    status = models.CharField(max_length=20, choices=dev_statues, default=dev_statues[0][0])
+    status = models.CharField(max_length=20, choices=dev_statues, default=dev_statues[0][0].value)
     description = models.TextField()
     business_task = models.CharField(max_length=100)
     depends_on = models.ManyToManyField("Microservice", "dependants", "dependants",
