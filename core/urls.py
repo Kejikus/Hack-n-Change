@@ -19,5 +19,6 @@ from django.urls import path, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('graph/', include('graph.urls')),
+    path('rest/', include('rest.urls')),
     path('', include('microservice.urls')),
 ]
