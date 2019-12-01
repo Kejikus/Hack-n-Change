@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ static("css/search.css") }}">
+{% endblock %}
+
+{% block content %}
+    <div class="left-column col-2">
+        <ul class="department-microservices container">
+            <header>Микросервисы департамента</header>
+            {% for service in department_bound %}
+                <li><a href="{{ url("microservice", (service.id,)) }}">{{ service.name }}</a></li>
+            {% else %}
+                <li>Нечего отображать ¯\_(ツ)_/¯</li>
+            {% endfor %}
+        </ul>
+        <ul class="favorites container">
+            <header>Избранные микросервисы</header>
+        </ul>
+    </div>
+    <div class="main-column col-6">
+        <header>Поиск</header>
+        <div class="news-container row">
+            {% for article in news %}
+                <a href="{{ url("microservice:microservice") }}" class="news-card col-5">
+                    <header>{{ article.header }}</header>
+                    <div class="news-body">{{ article.body }}</div>
+                </a>
+                {% else %}
+                    <div class="no-updates">No updates</div>
+                {% endfor %}
+            {% if len(news)%2==1 %}
+                <div class="col-5"></div>
+            {% endif %}
+        </div>
+    </div>
+    <div class="right-column col-4">
+        <header>Расширенные настройки</header>
+        <p>
+        <label class="lbl">Статус:</label>
+            <select class="inp_srch">
+                <option value="">Любой</option>
+                {% for status in dev_statues %}
+                    <option value="{{ status[0].value }}">{{status[1]}}</option>
+                {% endfor %}
+            </select>
+        </p>
+        <p>
+            <label class="lbl">Бизнес задача:</label>
+            <input class="inp_srch" type="text">
+        </p>
+        <p>
+            <label class="lbl">Департамент:</label>
+            <input class="inp_srch" type="text">
+        </p>
+        <p>
+            <label class="lbl">Технологии:</label>
+            <input class="inp_srch" type="text">
+        </p>
+    </div>
+{% endblock %}
