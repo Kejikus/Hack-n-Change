@@ -1,2 +1,4 @@
 Django
 Jinja2
+django_rest_framework
+django_elasticsearch_dsl

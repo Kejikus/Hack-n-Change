@@ -1,0 +1,19 @@
+body {
+    padding-top: 2rem;
+    background-color: #C4C4C4;
+}
+
+body > header {
+    background-color: #3E938A;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+.logo img {
+    width: 100%;
+}
+
+.search {
+    display: flex;
+    align-items: center;
+}
