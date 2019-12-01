@@ -19,7 +19,8 @@ def index(request):
     news = [
         {
             'header': 'Новое обновление для микросервиса {}'.format(update.microservice.name),
-            'body': update.description
+            'body': update.description,
+            'microservice_id': update.microservice.id,
         }
 
         for update in Update.objects.order_by('-date')[:10]
@@ -31,9 +32,10 @@ def index(request):
     return render(request, 'index.html', context)
 
 
-def department_view(request, id):
+def microservice_view(request, id):
     raise NotImplementedError()
 
 
-def test_view(request):
-    return render(request, 'test_file.html')
+def add_update_view(request, microservice_id):
+
+    return render(request, )

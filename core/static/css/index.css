@@ -22,10 +22,23 @@
     margin-bottom: 1.5rem;
 }
 
+.news-container {
+    justify-content: space-around;
+}
+
 .news-card {
+    display: block;
     background-color: #71B6AE;
     padding-top: 2rem;
     padding-bottom: 2rem;
+    margin-top: 1.5rem;
+    text-decoration: none;
+    color: black;
+}
+
+.news-card:hover {
+    text-decoration: none;
+    color: black;
 }
 
 .news-card > header {

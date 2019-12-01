@@ -9,7 +9,7 @@
         <ul class="department-microservices container">
             <header>Микросервисы департамента</header>
             {% for service in department_bound %}
-                <li><a href="{{ url("microservice", (service.id,)) }}">{{ service.name }}</a></li>
+                <li><a href="{{ url("microservice:microservice", kwargs={'id': service.id}) }}">{{ service.name }}</a></li>
             {% else %}
                 <li>Нечего отображать ¯\_(ツ)_/¯</li>
             {% endfor %}
@@ -17,7 +17,7 @@
         <ul class="favorites container">
             <header>Избранные микросервисы</header>
             {% for service in favorites %}
-                <li><a href="{{ url("microservice", (service.id,)) }}">{{ service.name }}</a></li>
+                <li><a href="{{ url("microservice:microservice", kwargs={'id': service.id}) }}">{{ service.name }}</a></li>
             {% else %}
                 <li>Нечего отображать ¯\_(ツ)_/¯</li>
             {% endfor %}
@@ -27,13 +27,24 @@
         <header>Новости</header>
         <div class="news-container">
             {% for article in news %}
-                <article class="news-card col-6">
-                    <header>{{ article.header }}</header>
-                    <div class="news-body">{{ article.body }}</div>
-                </article>
+                {% if article.microservice_id != None %}
+                    <a href="{{ url("microservice:microservice", kwargs={'id': article.microservice_id}) }}"
+                       class="news-card col-5">
+                        <header>{{ article.header }}</header>
+                        <div class="news-body">{{ article.body }}</div>
+                    </a>
+                {% else %}
+                    <article class="news-card col-5">
+                        <header>{{ article.header }}</header>
+                        <div class="news-body">{{ article.body }}</div>
+                    </article>
+                {% endif %}
             {% else %}
                 <div class="no-updates">No updates</div>
             {% endfor %}
+            {% if len(news) % 2 == 1 %}
+                <div class="col-5"></div>
+            {% endif %}
         </div>
     </div>
 {% endblock %}
