@@ -1,2 +1,3 @@
 Django
 Jinja2
+django_elasticsearch_dsl
