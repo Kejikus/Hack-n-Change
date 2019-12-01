@@ -1,0 +1,63 @@
+{% extends "base.html" %}
+
+{% block stylesheets %}
+    <link rel="stylesheet" href="{{ static("css/microservice.css") }}">
+    <script src="{{ static("js/cytoscape.min.js") }}"></script>
+    <script src="{{ static("js/jquery.js") }}"></script>
+    <script src="{{ static("js/microservice.js") }}"></script>
+{% endblock %}
+
+{% block content %}
+    <div class="left-column col-2">
+        <ul class="department-microservices container">
+            <header>Микросервисы департамента</header>
+            {% for service in department_bound %}
+                <li><a href="{{ url("microservice", (service.id,)) }}">{{ service.name }}</a></li>
+            {% else %}
+                <li>Нечего отображать ¯\_(ツ)_/¯</li>
+            {% endfor %}
+        </ul>
+        <ul class="favorites container">
+            <header>Избранные микросервисы</header>
+        </ul>
+    </div>
+    <div class="main-column col-6" style="background-color: snow; margin: 1rem 0">
+        <header>Микросервис {{ name }}</header>
+        <div class="news-container">
+            <p>
+                <h5>Статус</h5>
+            </p>
+            <p>{{ status }}</p>
+            <p>
+                <h5>Бизнес задача</h5>
+            </p>
+            <p>{{ business_task }}</p>
+            <p>
+            <p>
+                <h5>Описание</h5>
+            </p>
+            <p>{{ description }}</p>
+            <p>
+                <h5>Зависимости от других микросервисов</h5>
+            </p>
+            <p>{% for item in depends_on %}
+                <a href="{{ url("microservice:microservice", kwargs={'id': item.id}) }}"></a>
+                {% endfor %}
+            </p>
+            <div id="cy"></div>
+        </div>
+    </div>
+    <div class="right-column col-3">
+        <header>Основная информация</header>
+                <label>Департамент:</label>
+                <a href="#" style="color:">{{ department.name }}</a>
+                <label>Технический стек:</label>
+                <ui>
+                    {% for item in tech_stack %}
+                        <li>
+                            <a href="#">{{ item.name }}</a>
+                        </li>
+                    {% endfor %}
+                </ui>
+    </div>
+{% endblock %}

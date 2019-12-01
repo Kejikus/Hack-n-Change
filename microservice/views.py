@@ -2,6 +2,7 @@ from django.contrib.auth.models import User, AnonymousUser
 from django.shortcuts import render
 
 from microservice.models import Microservice, Employee, Update
+from microservice.utils import Status
 
 
 def index(request):
@@ -19,8 +20,7 @@ def index(request):
     news = [
         {
             'header': 'Новое обновление для микросервиса {}'.format(update.microservice.name),
-            'body': update.description,
-            'microservice_id': update.microservice.id,
+            'body': update.description
         }
 
         for update in Update.objects.order_by('-date')[:10]
@@ -69,16 +69,15 @@ def microservice_view(request, id):
     if item is not None:
         context = {
             'name': item.name,
-            'status': item.status,
+            'status': dict(item.dev_statues)[Status(item.status)],
             'description': item.description,
             'business_task': item.business_task,
-            'depends_on': item.depends_on,
+            'depends_on': item.depends_on.all(),
             'department': item.department,
-            'tech_stack': item.tech_stack
+            'tech_stack': item.tech_stack.all()
         }
         return render(request, 'microservice.html', context)
 
 
-def add_update_view(request, microservice_id):
-
-    return render(request, )
+def test_view(request):
+    return render(request, 'test_file.html')
